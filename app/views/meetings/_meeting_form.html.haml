@@ -1,0 +1,25 @@
+//Formulario comun a crear y editar libros
+
+//De esta manera prevenimos que se creen libros en BD si existen errores 
+//de validacion
+- unless @meeting.nil? or @meeting.errors.empty?
+  #warning
+    Errors prevented this meeting from being #{controller.action_name}d:
+    %ul
+      - @meeting.errors.full_messages.each do |error|
+        %li= error
+
+#alinea10ypadding2= label :meeting, :title, 'Title'
+#alinea10ypadding2= text_field :meeting, :title
+
+#alinea10ypadding2= label :meeting, :date, 'Date'
+#alinea10ypadding2= datetime_select( :meeting, :date, :order => [:day, :month, :year,:hour, :minute], prompt: { day: 'Day', month: 'Month', year: 'Year',hour: 'Hour', minute: 'Minute'})
+
+#alinea10ypadding2= label :meeting, :country, 'Country'
+#alinea10ypadding2= text_field :meeting, :country
+
+#alinea10ypadding2= label :meeting, :city, 'City'
+#alinea10ypadding2= text_field :meeting, :city
+
+#alinea10ypadding2= label :meeting, :direction, 'Address'
+#alinea10ypadding2= text_field :meeting, :direction

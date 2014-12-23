@@ -1,0 +1,9 @@
+//HOME
+=render :partial => 'menubars/menubar_signin'
+%article.content
+	%h1#centered REGISTER
+	%h2#alinea10ypadding2 Register user
+	= form_tag users_path, :method => :post do
+		= render :partial => 'user_form'
+		%br
+		#alinea10ypadding2= submit_tag 'Register'

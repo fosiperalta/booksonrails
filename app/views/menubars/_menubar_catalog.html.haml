@@ -1,0 +1,25 @@
+//PARTIAL del menubar con el apartado de catalog activo
+%ul.logo
+  %a{:href => "/home"}
+    %span
+    = image_tag "backgroundLogo.png"
+%ul.menu
+  %li
+    %a{:href => "/logout"}
+      %span LOGOUT
+  %li
+    %a{:href => user_path(session[:current_user_id])}
+      %span ACCOUNT    
+  %li
+    %a.active{:href => "/books"}
+      %span CATALOG
+  %li
+    %a{:href => '/meetings_options'}
+      %span MEETINGS
+  %li
+    - @user = User.find(session[:current_user_id])
+    %a{:href => user_exemplars_path(@user)}
+      %span MY BOOKS
+  %li
+    %a{:href => "/home"}
+      %span HOME

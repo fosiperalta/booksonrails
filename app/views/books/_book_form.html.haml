@@ -1,0 +1,35 @@
+//Formulario comun a crear y editar libros
+
+//De esta manera prevenimos que se creen libros en BD si existen errores 
+//de validacion
+- unless @book.nil? or @book.errors.empty?
+  #warning
+    Errors prevented this book from being #{controller.action_name}d:
+    %ul
+      - @book.errors.full_messages.each do |error|
+        %li= error
+
+#alinea10ypadding2= label :book, :title, 'Title'
+#alinea10ypadding2= text_field :book, :title
+
+#alinea10ypadding2= label :book, :author, 'Author'
+#alinea10ypadding2= text_field :book, :author
+
+#alinea10ypadding2= label :book, :publisher, 'Publisher'
+#alinea10ypadding2= text_field :book, :publisher
+
+#alinea10ypadding2= label :book, :language, 'Language'
+#alinea10ypadding2= select :book, :language, ['English', 'French', 'German', 'Italian','Japanese', 'Spanish']
+
+#alinea10ypadding2= label :book, :isbn10, 'isbn10*'
+#alinea10ypadding2= text_field :book, :isbn10
+#alinea10ypadding2.tip * Must follow the format xx-xxxx-xxx-x with a correct control digit
+
+
+#alinea10ypadding2= label :book, :isbn13, 'isbn13**'
+#alinea10ypadding2= text_field :book, :isbn13
+#alinea10ypadding2.tip ** Must follow the format yyy-y-yyyy-yyyy-y with a correct control digit
+
+
+#alinea10ypadding2= label :book, :summary, 'Summary'
+#alinea10ypadding2= text_field :book, :summary

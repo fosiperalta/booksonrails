@@ -1,0 +1,9 @@
+=render :partial => 'menubars/menubar_catalog'
+%article.content
+	%h1#centered CATALOG
+	%h2#alinea10ypadding2 Add New Book
+	 
+	= form_tag books_path, :method => :post do
+		= render :partial => 'book_form'
+		%br
+		#alinea10ypadding2= submit_tag 'Save Changes'

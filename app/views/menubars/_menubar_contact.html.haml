@@ -1,0 +1,12 @@
+//PARTIAL del menubar con el apartado de Sign in activo
+%ul.logo
+  %a{:href => "/sessions/new"}
+    %span
+    = image_tag "backgroundLogo.png"
+%ul.menu
+  %li
+    %a.active{:href => "/contact"}
+      %span CONTACT
+  %li
+    %a{:href => new_session_path}
+      %span SIGN IN

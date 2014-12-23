@@ -1,0 +1,6 @@
+=render :partial => 'menubars/menubar_meetings'
+%h2 Edit Meeting
+
+= form_tag meeting_path(@meeting), :method => :put do
+  = render :partial => 'meeting_form'
+  = submit_tag 'Save Changes'

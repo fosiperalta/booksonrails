@@ -1,0 +1,73 @@
+//Mostrar todos los libros disponibles en BD
+=render :partial => 'menubars/menubar_meetings'
+%article.content
+  %h1#centered MEETINGS
+  %p#alinea10ypadding2
+    Here you can assist to one of the created meetings, edit your assistance if it exists and view the info of a given meeting. The meetings you are going to assist are shown in blue, the rest in yellow.
+  %table#books
+    %thead
+      %tr
+        %th Title
+        %th Date
+        %th Country
+        %th City
+        %th Assistance
+        %th Delete
+    %tbody
+      -# this goes just inside %body:
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+      - @user = User.find(session[:current_user_id])
+      - @meetings.each do |meeting|
+        - @assistance = Assistance.where(user_id: @user.id.to_s, meeting_id: meeting.id.to_s).last
+        -if meeting.creator == session[:current_user_username]
+          -if @assistance.nil?
+            %tr#nottaken
+              %td= link_to meeting.title + " (Created by me)", meeting_path(meeting)
+              %td= meeting.date
+              %td= meeting.country
+              %td= meeting.city
+              -if @assistance.nil?
+                %td= link_to "Assist to meeting", user_assistance_path(@user, meeting)
+              -else
+                %td= link_to "Edit assistance", user_assistance_path(@user, meeting)
+              %td= button_to 'Delete',  meeting_path(meeting), :method => :delete, :confirm => 'Are you sure?'
+          -else
+            %tr#taken
+              %td= link_to meeting.title + " (Created by me)", meeting_path(meeting)
+              %td= meeting.date
+              %td= meeting.country
+              %td= meeting.city
+              -if @assistance.nil?
+                %td= link_to "Assist to meeting", user_assistance_path(@user, meeting)
+              -else
+                %td= link_to "Edit assistance", user_assistance_path(@user, meeting)
+              %td= button_to 'Delete',  meeting_path(meeting), :method => :delete, :confirm => 'Are you sure?'
+        -else
+          -if @assistance.nil?
+            %tr#nottaken
+              %td= link_to meeting.title, meeting_path(meeting) 
+              %td= meeting.date
+              %td= meeting.country
+              %td= meeting.city
+              -if @assistance.nil?
+                %td= link_to "Assist to meeting", user_assistance_path(@user, meeting)
+              -else
+                %td= link_to "Edit assistance", user_assistance_path(@user, meeting)
+              %td Unavailable
+          -else
+            %tr#taken
+              %td= link_to meeting.title, meeting_path(meeting) 
+              %td= meeting.date
+              %td= meeting.country
+              %td= meeting.city
+              -if @assistance.nil?
+                %td= link_to "Assist to meeting", user_assistance_path(@user, meeting)
+              -else
+                %td= link_to "Edit assistance", user_assistance_path(@user, meeting)
+              %td Unavailable
+  %br
+  #alinea10ypadding2= link_to 'Create new meeting', new_meeting_path
+  %br

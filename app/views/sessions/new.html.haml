@@ -1,0 +1,14 @@
+= render :partial => 'menubars/menubar_signin'
+%article.signin
+	%h1#centered SIGN IN
+	- if flash[:warning]
+		#warning.message= flash[:warning]
+	= form_tag sessions_path, :method => :post do
+		#sigin_input#centered= text_field :session, :username, :placeholder => "Username"
+		%br
+		#sigin_input#centered= password_field :session, :password, :placeholder => "Password"
+		%br
+		#signin_button#centered= submit_tag 'Sign in'
+	%p#centered
+		Not a member yet?
+		= link_to 'Register now', new_user_path

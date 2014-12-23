@@ -1,0 +1,29 @@
+//Formulario comun a crear y editar usuarios
+
+//De esta manera prevenimos que se creen usuarios en BD si existen errores 
+//de validacion
+- unless @user.nil? or @user.errors.empty?
+  #warning
+    Errors prevented this user from being #{controller.action_name}d:
+    %ul
+      - @user.errors.full_messages.each do |error|
+        %li= error
+
+#alinea10ypadding2= label :user, :name, 'First Name'
+#alinea10ypadding2= text_field :user, :name
+
+#alinea10ypadding2= label :user, :surname, 'Second Name'
+#alinea10ypadding2= text_field :user, :surname
+
+#alinea10ypadding2= label :user, :birth_date, 'Birth Date'
+//= date_select :user, :birth_date
+#alinea10ypadding2= date_select( :user, :birth_date, :order => [:day, :month, :year], prompt: { day: 'Day', month: 'Month', year: 'Year' })
+
+#alinea10ypadding2= label :user, :username, 'Username'
+#alinea10ypadding2= text_field :user, :username
+
+#alinea10ypadding2= label :user, :email, 'Email'
+#alinea10ypadding2= text_field :user, :email
+
+#alinea10ypadding2= label :user, :password, 'Password'
+#alinea10ypadding2= password_field :user, :password

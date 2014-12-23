@@ -1,0 +1,70 @@
+//Mostrar todos los libros disponibles en BD
+=render :partial => 'menubars/menubar_mybooks'
+%article.content
+  %h1#centered MY BOOKS
+  %p#alinea10
+    Here you can manage all the books in your collection. 
+  %table#books
+    %thead
+      %tr
+        %th Title
+        %th Author
+        %th Publisher
+        %th Language
+        %th Remove from My Books
+    %tbody
+      -# this goes just inside %body:
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+        
+      - @books.each do |book|
+        -if (!book.nil?)  
+          %tr
+            %td= link_to book.title, book_path(book) 
+            %td= book.author
+            %td= book.publisher
+            %td= book.language
+            - @user = User.find(session[:current_user_id])
+            %td= button_to 'Remove',  user_exemplar_path(@user,book), :method => :delete, :confirm => 'Are you sure?'
+  %br
+  %div#alinea10
+    Do you want to add some more books?
+  = form_tag({:controller => "exemplars", :action => "search_by_title"}, {:method => "get"}) do
+    #alinea10ypadding2= label :title, 'Search by title'
+    #alinea10ypadding2= text_field_tag "title"
+    #alinea10ypadding2= submit_tag "Search"
+
+  %br
+  %h2#alinea10 
+    Search results 
+    =image_tag "search.png"
+  %p#alinea10 
+    Books whose title includes "#{@title}"...
+  -if(!@searchedBooks.nil?)
+    %table#books
+      %thead
+        %tr
+          %th Title
+          %th Author
+          %th Publisher
+          %th Language
+          %th Remove from My Books
+      %tbody
+        -# this goes just inside %body:
+        - if flash[:notice]
+          #notice.message= flash[:notice]
+        - elsif flash[:warning]
+          #warning.message= flash[:warning]
+          
+        - @searchedBooks.each do |book|
+          %tr
+            %td= link_to book.title, book_path(book) 
+            %td= book.author
+            %td= book.publisher
+            %td= book.language
+            - @user = User.find(session[:current_user_id])
+            %td= button_to "Add to My Books", book_add_to_my_books2_path(book)
+
+          

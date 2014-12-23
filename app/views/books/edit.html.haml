@@ -1,0 +1,7 @@
+=render :partial => 'menubars/menubar_catalog'
+%article.content
+	%h2#centered Edit Book
+
+	= form_tag book_path(@book), :method => :put do
+		= render :partial => 'book_form'
+		= submit_tag 'Save Changes'

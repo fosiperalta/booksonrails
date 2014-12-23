@@ -1,0 +1,32 @@
+//Mostrar todos los libros disponibles en BD
+=render :partial => 'menubars/menubar_catalog'
+%article.content
+  %h1#centered CATALOG
+  %p#centered
+    Wellcome to the book catalog. Here you can manage the website catalog in a collaborative way. 
+  #alinea10= link_to 'Add new book', new_book_path
+  %br
+  %table#books
+    %thead
+      %tr
+        %th Title
+        %th Author
+        %th Publisher
+        %th Language
+        %th Add to My Books
+    %tbody
+      -# this goes just inside %body:
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+        
+      - @books.each do |book|
+        %tr
+          %td= link_to book.title, book_path(book)
+          %td= book.author
+          %td= book.publisher
+          %td= book.language
+          %td= button_to "Add to My Books", book_add_to_my_books_path(book)
+  %br
+  #alinea10= link_to 'Add new book', new_book_path

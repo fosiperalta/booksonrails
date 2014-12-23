@@ -1,0 +1,8 @@
+=render :partial => 'menubars/menubar_meetings'
+%article.content
+	%h2#centered Create New Meeting
+	
+	= form_tag meetings_path, :method => :post do
+		= render :partial => 'meeting_form'
+		%br
+		#alinea10ypadding2= submit_tag 'Save Changes'

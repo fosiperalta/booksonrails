@@ -1,0 +1,29 @@
+//ACCOUNT
+=render :partial => 'menubars/menubar_account'
+%article.content
+	%h1#centered ACCOUNT
+
+	%h2#alinea10ypadding2 Account data of #{session[:current_user_username]}
+
+	%ul#details
+		%li#alinea10ypadding2
+			Username:
+			= @user.username
+		%li#alinea10ypadding2
+			Email:
+			= @user.email
+		%li#alinea10ypadding2
+			First Name:
+			= @user.name
+		%li#alinea10ypadding2
+			Second Name:
+			= @user.surname
+		%li#alinea10ypadding2
+			-if (!@user.birth_date.nil?)
+				Birth Date:
+				= @user.birth_date.strftime("%m/%d/%Y")
+			-else
+				Birth Date:
+				= @user.birth_date
+	    
+	#alinea10ypadding2= link_to 'Edit account info', edit_user_path(@user)

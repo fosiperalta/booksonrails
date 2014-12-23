@@ -1,0 +1,38 @@
+//Mostrar todos los libros disponibles en BD
+=render :partial => 'menubars/menubar_mybooks'
+%h1 MY BOOKS
+
+%table#books
+  %thead
+    %tr
+      %th Title
+      %th Author
+      %th Publisher
+      %th Language
+      %th Add to My Books
+  %tbody
+    -# this goes just inside %body:
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    - elsif flash[:warning]
+      #warning.message= flash[:warning]
+      
+    - @books.each do |book|
+      %tr
+        %td= link_to book.title, book_path(book) 
+        %td= book.author
+        %td= book.publisher
+        %td= book.language
+        - @user = User.find(session[:current_user_id])
+        %td EEE
+        
+
+= label :book, :title, 'Search by title'
+= text_field :book, :title
+=button_to "Search", search_by_title_user_exemplars_path(), method: :get
+
+- form_tag(:action => :search_by_title) do
+  / basic_hydraulics = method in controller
+  = label :book, :title, 'Search by title'
+  = text_field :book, :title
+  = submit_tag "Search"

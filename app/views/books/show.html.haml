@@ -1,0 +1,30 @@
+=render :partial => 'menubars/menubar_catalog'
+%article.content
+  %h2#alinea10ypadding2 Details about #{@book.title}
+
+  %ul#details
+    %li#alinea10ypadding2
+      Author:
+      = @book.author
+    %li#alinea10ypadding2
+      isbn10:
+      = @book.isbn10
+    %li#alinea10ypadding2
+      isbn13:
+      = @book.isbn13
+    %li#alinea10ypadding2
+      Pusblisher:
+      = @book.publisher
+    %li#alinea10ypadding2
+      Language:
+      = @book.language  
+      
+
+  %h3#alinea10ypadding2 Summary:
+
+  %p#alinea10ypadding2= @book.summary
+
+  #alinea10ypadding2= link_to 'Edit info', edit_book_path(@book)
+  #alinea10ypadding2= link_to 'Back to book list', books_path
+  #alinea10ypadding2= button_to 'Delete', book_path(@book), :method => :delete, :confirm => 'Are you sure?'
+  %br

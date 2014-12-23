@@ -1,0 +1,26 @@
+//HOME
+=render :partial => 'menubars/menubar_home'
+%article.home
+	%h1#centered HOME
+	%p#padding2
+		Welcome #{session[:current_user_username]}!
+	%p#padding2
+		Books on Rails is a web application where you can assist and create physical book enchanging meeting for librophiles all over the world. You can also manage your own collection of books while collaborating on the website catalog. 
+		- @user = User.find(session[:current_user_id])
+		%ul#details
+			%li#padding2
+				=link_to "MY BOOKS:", user_exemplars_path(@user)
+				In this section you can manage your own collection of books. You can add books, delete them or view information about them!
+			%br
+			%li#padding2
+				=link_to "MEETINGS:", meetings_options_path
+				Here you can access to some options for managing the book-enchanging meetings.
+			%br
+			%li#padding2
+				=link_to "CATALOG:", books_path(@user)
+				You can also collaborate to enlarge the book catalog of the website. Every book counts!
+			%br
+			%li#padding2
+				=link_to "ACCOUNT:", user_path(@user)
+				You can administrate your account, view or edit account information on demand.
+			%br

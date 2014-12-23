@@ -1,0 +1,17 @@
+=render :partial => 'menubars/menubar_meetings'
+%article.content
+	%h1#centered MEETINGS OPTIONS
+	#alinea10ypadding2#centered= link_to 'View all available meetings', meetings_path
+	%div.tip#alinea10ypadding2#centered
+		Select this if you want to see all the meetings created in the website
+	- @user = User.find(session[:current_user_id])
+	%br
+	#alinea10ypadding2#centered= link_to 'View meetings I\'m assisting', user_assistances_path(@user)
+	%div.tip#alinea10ypadding2#centered
+		Select this if you want to see only the meetings you are assisting
+
+	%br
+	#alinea10ypadding2#centered= link_to 'Create new meeting', new_meeting_path
+	%div.tip#alinea10ypadding2#centered
+		With this option you can create new meetings
+	%br

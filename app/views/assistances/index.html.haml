@@ -1,0 +1,35 @@
+//Mostrar todos los libros disponibles en BD
+=render :partial => 'menubars/menubar_meetings'
+%article.content
+  %h1#centered ASSISTANCES
+
+  %table#books
+    %thead
+      %tr
+        %th Title
+        %th Date
+        %th Country
+        %th City
+        %th Assistance
+        %th Books
+    %tbody
+      -# this goes just inside %body:
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+      -@user = User.find(params[:user_id])
+      -@meetings.each do |meeting|
+        %tr
+          %td= link_to meeting.title, meeting_path(meeting)
+          %td= meeting.date
+          %td= meeting.country
+          %td= meeting.city
+          %td= button_to 'Remove assistance',  user_assistance_path(@user,meeting), :method => :delete, :confirm => 'Are you sure?'
+          -@assistance = Assistance.where(user_id: @user.id.to_s, meeting_id: meeting.id.to_s).last
+          -linea = ""
+          -unless @assistance.books.nil?
+            -@assistance.books.each do |book|
+              -linea = Book.find(book).title + ", " + linea
+          %td= linea
+  %br

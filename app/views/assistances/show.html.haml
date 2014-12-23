@@ -1,0 +1,60 @@
+//Mostrar todos los libros disponibles en BD
+=render :partial => 'menubars/menubar_meetings'
+%article.content
+  %h1#centered ASSISTANCE TO #{@meeting.title.upcase}
+
+  %ul#details
+    %li#alinea10ypadding2
+      Title:
+      =@meeting.title
+    %li#alinea10ypadding2
+      Date:
+      = @meeting.date
+    %li#alinea10ypadding2
+      Country:
+      = @meeting.country
+    %li#alinea10ypadding2
+      City:
+      = @meeting.city
+    %li#alinea10ypadding2
+      Address:
+      = @meeting.direction
+    %li#alinea10ypadding2
+      Creator:
+      = @meeting.creator
+    %li#alinea10ypadding2
+      Books I'm taking:
+      - books_line=""
+      -@assistance = Assistance.where(user_id: @user.id.to_s, meeting_id: @meeting.id.to_s).last
+      -unless @assistance.nil?
+        -@assistance.books.each do |b|
+          -book = Book.find(b)
+          =book.title + ","
+              
+  %table#books
+    %thead
+      %tr
+        %th Book
+        %th Take to meeting
+    %tbody
+      -# this goes just inside %body:
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+        
+      - @books.each do |book|
+        - @assistance = Assistance.where(user_id: @user.id.to_s, meeting_id: @meeting.id.to_s).last
+        -if @assistance.nil?
+          %tr#nottaken
+            %td= book.title
+            %td= button_to 'Take book to meeting', user_assistance_take_book_path(@user, @meeting, book)
+        -elsif @assistance.books.include?(book.id)
+          %tr#taken
+            %td= book.title
+            %td= button_to 'Remove book from meeting', user_assistance_untake_book_path(@user, @meeting, book)
+        -else
+          %tr#nottaken
+            %td= book.title
+            %td= button_to 'Take book to meeting', user_assistance_take_book_path(@user, @meeting, book)
+  %br

@@ -1,0 +1,51 @@
+     book_add_to_my_books POST   /books/:book_id/add_to_my_books(.:format)                      books#add_to_my_books
+                    books GET    /books(.:format)                                               books#index
+                          POST   /books(.:format)                                               books#create
+                 new_book GET    /books/new(.:format)                                           books#new
+                edit_book GET    /books/:id/edit(.:format)                                      books#edit
+                     book GET    /books/:id(.:format)                                           books#show
+                          PUT    /books/:id(.:format)                                           books#update
+                          DELETE /books/:id(.:format)                                           books#destroy
+user_assistance_take_book POST   /users/:user_id/assistances/:assistance_id/take_book(.:format) assistances#take_book
+         user_assistances GET    /users/:user_id/assistances(.:format)                          assistances#index
+                          POST   /users/:user_id/assistances(.:format)                          assistances#create
+      new_user_assistance GET    /users/:user_id/assistances/new(.:format)                      assistances#new
+     edit_user_assistance GET    /users/:user_id/assistances/:id/edit(.:format)                 assistances#edit
+          user_assistance GET    /users/:user_id/assistances/:id(.:format)                      assistances#show
+                          PUT    /users/:user_id/assistances/:id(.:format)                      assistances#update
+                          DELETE /users/:user_id/assistances/:id(.:format)                      assistances#destroy
+           user_exemplars GET    /users/:user_id/exemplars(.:format)                            exemplars#index
+                          POST   /users/:user_id/exemplars(.:format)                            exemplars#create
+        new_user_exemplar GET    /users/:user_id/exemplars/new(.:format)                        exemplars#new
+       edit_user_exemplar GET    /users/:user_id/exemplars/:id/edit(.:format)                   exemplars#edit
+            user_exemplar GET    /users/:user_id/exemplars/:id(.:format)                        exemplars#show
+                          PUT    /users/:user_id/exemplars/:id(.:format)                        exemplars#update
+                          DELETE /users/:user_id/exemplars/:id(.:format)                        exemplars#destroy
+                    users GET    /users(.:format)                                               users#index
+                          POST   /users(.:format)                                               users#create
+                 new_user GET    /users/new(.:format)                                           users#new
+                edit_user GET    /users/:id/edit(.:format)                                      users#edit
+                     user GET    /users/:id(.:format)                                           users#show
+                          PUT    /users/:id(.:format)                                           users#update
+                          DELETE /users/:id(.:format)                                           users#destroy
+                 sessions GET    /sessions(.:format)                                            sessions#index
+                          POST   /sessions(.:format)                                            sessions#create
+              new_session GET    /sessions/new(.:format)                                        sessions#new
+             edit_session GET    /sessions/:id/edit(.:format)                                   sessions#edit
+                  session GET    /sessions/:id(.:format)                                        sessions#show
+                          PUT    /sessions/:id(.:format)                                        sessions#update
+                          DELETE /sessions/:id(.:format)                                        sessions#destroy
+                     root        /                                                              :controller#:action
+                     home        /home(.:format)                                                main_pages#home
+                  contact        /contact(.:format)                                             main_pages#contact
+                    login        /login(.:format)                                               main_pages#login
+                   logout GET    /logout(.:format)                                              sessions#destroy
+         meetings_options        /meetings_options(.:format)                                    main_pages#meetings_options
+  meeting_sign_to_meeting POST   /meetings/:meeting_id/sign_to_meeting(.:format)                meetings#sign_to_meeting
+                 meetings GET    /meetings(.:format)                                            meetings#index
+                          POST   /meetings(.:format)                                            meetings#create
+              new_meeting GET    /meetings/new(.:format)                                        meetings#new
+             edit_meeting GET    /meetings/:id/edit(.:format)                                   meetings#edit
+                  meeting GET    /meetings/:id(.:format)                                        meetings#show
+                          PUT    /meetings/:id(.:format)                                        meetings#update
+                          DELETE /meetings/:id(.:format)                                        meetings#destroy

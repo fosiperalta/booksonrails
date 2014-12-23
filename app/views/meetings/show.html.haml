@@ -1,0 +1,55 @@
+=render :partial => 'menubars/menubar_meetings'
+%article.content
+  %h1#centered MEETING
+  %h2#alinea10ypadding2 Details about #{@meeting.title}
+
+  %ul#details
+    %li#alinea10ypadding2
+      Title
+      =@meeting.title
+    %li#alinea10ypadding2
+      Date:
+      = @meeting.date
+    %li#alinea10ypadding2
+      Country:
+      = @meeting.country
+    %li#alinea10ypadding2
+      City:
+      = @meeting.city
+    %li#alinea10ypadding2
+      Address:
+      = @meeting.direction
+    %li#alinea10ypadding2
+      Creator:
+      = @meeting.creator
+
+  -@assistances = Assistance.where(meeting_id: @meeting.id.to_s)
+
+  %table#books
+    %thead
+      %tr
+        %th User
+        %th Books
+    %tbody
+      -# this goes just inside %body:
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+        
+      - @assistances.each do |assistance|
+        -user = User.find(assistance.user_id)
+        %tr
+          %td= user.username
+          -linea=""
+          -unless assistance.books.nil?
+            -assistance.books.each do |book|
+              -linea = Book.find(book).title + ", " + linea
+          %td= linea
+
+  -if @meeting.creator == session[:current_user_username]
+    %br
+    #alinea10ypadding2= link_to 'Edit info', edit_meeting_path(@meeting)
+    #alinea10ypadding2= button_to 'Delete', meeting_path(@meeting), :method => :delete, :confirm => 'Are you sure?'
+  %br
+  #alinea10ypadding2= link_to 'Back to meetings list', meetings_path
