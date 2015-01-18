@@ -1,6 +1,9 @@
 =render :partial => 'menubars/menubar_meetings'
-%h2 Edit Meeting
+%article.content
+	%h1#centered MEETINGS
+	%h2#alinea10ypadding2 Edit Meeting
 
-= form_tag meeting_path(@meeting), :method => :put do
-  = render :partial => 'meeting_form'
-  = submit_tag 'Save Changes'
+	=form_tag meeting_path(@meeting), :method => :put do
+		#alinea10ypadding2= render :partial => 'meeting_form'
+		%br
+		#alinea10ypadding2= submit_tag 'Save Changes'
