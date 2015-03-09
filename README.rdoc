@@ -7,14 +7,15 @@ The very purpose of this site is to connect people who want to exchange
 books via real life meetings. 
 
 You can sign in, and manage both a general 
-catalogue of books or an own personal colection of exemplars like the one 
+catalog of books or an own personal colection of exemplars like the one 
 you have at home. 
 
 == Main Features
-* Catalogue
+* Catalog:
 * Colection
 * Meetings
 * Account based
+## The second largest heading
 
 == Description of Contents
 
