@@ -1,8 +1,11 @@
 == Books on Rails
 
 Books on Rails is a web-application oriented to librophiles (book lovers).
+
 The very purpose of this site is to connect people who want to exchange 
-books via real life meetings. You can sign in, and manage both a general 
+books via real life meetings. 
+
+You can sign in, and manage both a general 
 catalogue of books or an own personal colection of exemplars like the one 
 you have at home. 
 
