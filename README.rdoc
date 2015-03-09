@@ -1,4 +1,5 @@
-== Books on Rails
+http://i58.tinypic.com/344xikm.png
+== Books on Rails  
 
 Books on Rails is a web-application oriented to librophiles (book lovers).
 
